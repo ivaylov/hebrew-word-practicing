@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    Hebrew word practicing.
+  </title>
+  <link href="css.css" rel="stylesheet">
+  <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <div id="quizWrap"><img src="logo.png">
+  </div>
+</body>
+<script>
+  var English = [];
+  var Translation = [];
+  var Hebrew = [];
+  $.ajax({
+    type: "GET",
+    url: "https://raw.githubusercontent.com/ivaylov/hebrew-word-practicing/main/Hebrew-words.csv",
+    dataType: "text",
+    success: function (data) { game(data); }
+  });
+  function game(data) {
+    var lines = data.split(/\r\n|\n/);
+    var headings = lines[0].split(',');
+    for (var j = 1; j < lines.length; j++) {
+      var values = lines[j].split(',');
+      English.push(values[0]);
+      Translation.push(values[1]);
+      Hebrew.push(values[2]);
+    }
+    var randomEnglsih = Math.floor(Math.random() * English.length);
+    var randomEnglsih2 = Math.floor(Math.random() * English.length);
+    var randomEnglsih3 = Math.floor(Math.random() * English.length);
+    var randomEnglsih4 = Math.floor(Math.random() * English.length);
+    var randomEnglsih5 = Math.floor(Math.random() * English.length);
+    var randomEnglsih6 = Math.floor(Math.random() * English.length);
+    var randomEnglsih7 = Math.floor(Math.random() * English.length);
+    var randomEnglsih8 = Math.floor(Math.random() * English.length);
+    var randomEnglsih9 = Math.floor(Math.random() * English.length);
+    var randomEnglsih10 = Math.floor(Math.random() * English.length);
+    var quiz = {
+      data: [
+        {
+          q: English[randomEnglsih] + "  " + "(" + Translation[randomEnglsih] + ")",
+          o: [
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[randomEnglsih],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)]
+          ],
+          a: 1
+        },
+        {
+          q: English[randomEnglsih2] + "  " + "(" + Translation[randomEnglsih2] + ")",
+          o: [
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[randomEnglsih2],
+            Hebrew[Math.floor(Math.random() * English.length)]
+          ],
+          a: 2
+        },
+        {
+          q: English[randomEnglsih3] + "  " + "(" + Translation[randomEnglsih3] + ")",
+          o: [
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[randomEnglsih3]
+          ],
+          a: 3
+        },
+        {
+          q: English[randomEnglsih4] + "  " + "(" + Translation[randomEnglsih4] + ")",
+          o: [
+            Hebrew[randomEnglsih4],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)]
+          ],
+          a: 0
+        },
+        {
+          q: English[randomEnglsih5] + "  " + "(" + Translation[randomEnglsih5] + ")",
+          o: [
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[randomEnglsih5],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)]
+          ],
+          a: 1
+        },
+        {
+          q: English[randomEnglsih6] + "  " + "(" + Translation[randomEnglsih6] + ")",
+          o: [
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[randomEnglsih6],
+            Hebrew[Math.floor(Math.random() * English.length)]
+          ],
+          a: 2
+        },
+        {
+          q: English[randomEnglsih7] + "  " + "(" + Translation[randomEnglsih7] + ")",
+          o: [
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[randomEnglsih7]
+          ],
+          a: 3
+        },
+        {
+          q: English[randomEnglsih8] + "  " + "(" + Translation[randomEnglsih8] + ")",
+          o: [
+            Hebrew[randomEnglsih8],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)]
+          ],
+          a: 0
+        },
+        {
+          q: English[randomEnglsih9] + "  " + "(" + Translation[randomEnglsih9] + ")",
+          o: [
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[randomEnglsih9],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)]
+          ],
+          a: 1
+        },
+        {
+          q: English[randomEnglsih10] + "  " + "(" + Translation[randomEnglsih10] + ")",
+          o: [
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[Math.floor(Math.random() * English.length)],
+            Hebrew[randomEnglsih10],
+            Hebrew[Math.floor(Math.random() * English.length)]
+          ],
+          a: 2
+        }
+      ],
+      hWrap: null,
+      hQn: null,
+      hAns: null,
+      now: 0,
+      score: 0,
+      init: () => {
+        quiz.hWrap = document.getElementById("quizWrap");
+        quiz.hQn = document.createElement("div");
+        quiz.hQn.id = "quizQn";
+        quiz.hWrap.appendChild(quiz.hQn);
+        quiz.hAns = document.createElement("div");
+        quiz.hAns.id = "quizAns";
+        quiz.hWrap.appendChild(quiz.hAns);
+        quiz.draw();
+      },
+      draw: () => {
+        quiz.hQn.innerHTML = quiz.data[quiz.now].q;
+        quiz.hAns.innerHTML = "";
+        for (let i in quiz.data[quiz.now].o) {
+          let radio = document.createElement("input");
+          radio.type = "radio";
+          radio.name = "quiz";
+          radio.id = "quizo" + i;
+          quiz.hAns.appendChild(radio);
+          let label = document.createElement("label");
+          label.innerHTML = quiz.data[quiz.now].o[i];
+          label.setAttribute("for", "quizo" + i);
+          label.dataset.idx = i;
+          label.addEventListener("click", () => { quiz.select(label); });
+          quiz.hAns.appendChild(label);
+        }
+      },
+      select: (option) => {
+        let all = quiz.hAns.getElementsByTagName("label");
+        for (let label of all) {
+          label.removeEventListener("click", quiz.select);
+        }
+        let correct = option.dataset.idx == quiz.data[quiz.now].a;
+        if (correct) {
+          quiz.score++;
+          option.classList.add("correct");
+        } else {
+          option.classList.add("wrong");
+        }
+        quiz.now++;
+        setTimeout(() => {
+          if (quiz.now < quiz.data.length) { quiz.draw(); }
+          else {
+            quiz.hQn.innerHTML = `You have answered ${quiz.score} of ${quiz.data.length} correctly.`;
+            quiz.hAns.innerHTML = "";
+            setTimeout(function () {
+              window.location.reload();
+            }, 5000);
+          }
+        }, 1000);
+      },
+      reset: () => {
+        quiz.now = 0;
+        quiz.score = 0;
+        quiz.draw();
+      }
+    }
+    quiz.init()
+  };
+</script>
+
+</html>

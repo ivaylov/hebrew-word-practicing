@@ -1,0 +1,46 @@
+#quizWrap {
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+}
+#quizQn {
+  padding: 20px;
+  background: #0037B5;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 10px;
+}
+#quizAns {
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+}
+#quizAns input[type=radio] { display: none; }
+#quizAns label {
+  background: #fafafa;
+  border: 1px solid #0037B5;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+#quizAns label.correct {
+  background: #719cff;
+  border: 1px solid #0037B5;
+}
+#quizAns label.wrong {
+  background: #ffd7d7;
+  border: 1px solid #ff0000;
+}
+html, body {
+  background: #fff;
+  font-family: arial, sans-serif;
+}
